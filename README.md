@@ -8,7 +8,7 @@ Nebius × NVIDIA Global AI Hackathon, Personal AI / Best App track
 - Internal demo: **Oct 21**
 - Submission: **Oct 29** (deadline Oct 30, 10:00 a.m. PDT)
 
-The full plan is in [`docs/`](docs/).
+The full plan is in [`docs/ReMind_plan_v1_en.md`](docs/ReMind_plan_v1_en.md). If you use Claude, it reads [`CLAUDE.md`](CLAUDE.md) automatically.
 
 ## Repo structure
 
@@ -16,6 +16,7 @@ The full plan is in [`docs/`](docs/).
 |---|---|---|
 | [`frontend/`](frontend/) | Web app, onboarding survey, Context Simulator, persona side-by-side view | TBD |
 | [`backend/api/`](backend/api/) | REST endpoints the frontend calls | TBD |
+| [`backend/agents/profile/`](backend/agents/profile/) | Survey → profile, feedback → profile updates, history import | TBD |
 | [`backend/agents/save_loop/`](backend/agents/save_loop/) | Loop 1: content understanding → Nuggets → personal intent → goal linker → save decision | TBD |
 | [`backend/agents/moment_loop/`](backend/agents/moment_loop/) | Loop 2: goal matcher + interrupt judge | TBD |
 | [`backend/agents/workflows/`](backend/agents/workflows/) | Loop 3: intent router + Travel and Cooking workflows | TBD |
