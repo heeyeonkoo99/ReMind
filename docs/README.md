@@ -6,3 +6,4 @@
 - Architecture notes
 - Demo script (3 minutes)
 - Competitor notes from Week 1
+- Meeting notes ([`meetings/`](meetings/))
