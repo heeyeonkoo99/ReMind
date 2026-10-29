@@ -11,21 +11,30 @@ A personal agent that treats social-media saves as signals of intent. The same s
 
 ## Tech stack
 
-**Not decided yet.** The team will decide in a meeting.
-
-- Until this section is filled in, do **not** pick a language, framework, or database, or add dependencies on your own. Ask the human first.
-- Once decided, replace this section with the actual stack and add the commands below.
+See [docs/m0-m1-plan.md](docs/m0-m1-plan.md) §3. Don't add new dependencies or swap a choice below without asking the human first.
 
 | | Choice |
 |---|---|
-| Backend | TBD |
-| Frontend | TBD |
-| Storage | TBD |
-| Models (ASR / VLM / LLM) | TBD |
+| Environment | Docker + docker compose (`api` and `web` containers) |
+| Backend | Python 3.12, FastAPI, uv |
+| Frontend | Vite + React + TypeScript |
+| Storage | SQLite + SQLModel (planned) |
+| Models (ASR / VLM / LLM) | OpenRouter for VLM / LLM; faster-whisper (local) for ASR. Specific models TBD in M1 |
 
 ### Commands
 
-TBD: install, run backend, run frontend, run tests.
+Run from the repo root with Docker Desktop open. Needs a `.env` (copy `.env.example`).
+
+| Command | What it does |
+|---|---|
+| `docker compose up --build` | Build (first time or after dependency changes) and start everything |
+| `docker compose up` | Start everything |
+| `docker compose down` | Stop |
+| `docker compose logs -f api` | Follow backend logs |
+
+- Frontend: http://localhost:5173 (calls the backend through `/api/...`)
+- Backend API docs: http://localhost:8000/docs
+- Tests: TBD
 
 ## Repo map
 
