@@ -7,24 +7,19 @@ Guidance for Claude (and humans) working in this repo. Read this first, then the
 A personal agent that treats social-media saves as signals of intent. The same save means different things to different people, so ReMind infers **why this person** saved something (content × profile × context) and either stays quiet or suggests the smallest next step at the right moment.
 
 - Full plan: [docs/ReMind_plan_v1_en.md](docs/ReMind_plan_v1_en.md). Section 8 has the agent workflow and data structures.
-- Current milestones and how we build them: [docs/m0-m1-plan.md](docs/m0-m1-plan.md)
-- No fixed deadline. We build milestone by milestone (M0–M6), and both of us learn the full agent-development process.
+- Internal demo **Oct 21**, submission **Oct 29**
 
 ## Tech stack
 
+See [docs/m0-m1-plan.md](docs/m0-m1-plan.md) §3. Don't add new dependencies or swap a choice below without asking the human first.
+
 | | Choice |
 |---|---|
-| Environment | Docker + Docker Compose (`api` and `web` services) |
-| Backend | Python 3.12, FastAPI, uv for dependencies |
-| Frontend | Vite + React + TypeScript, Tailwind CSS (shadcn/ui when we need components) |
-| Storage | SQLite + SQLModel |
-| Models | OpenRouter (OpenAI-compatible API) via the shared helper `backend/tools/llm.py`. Configured in `.env` with `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL` |
-| ASR / video | faster-whisper, yt-dlp, ffmpeg (from M2) |
-| Agent framework | None. We write the agent loop ourselves with the OpenAI SDK. Official MCP SDK in M4 |
-| Formatting | ruff (Python); Prettier + ESLint (frontend) |
-
-- Stick to this stack. If something new seems needed (a library, a service, a framework), ask the human before adding it.
-- Every model call goes through `backend/tools/llm.py`, which logs it to `logs/llm_calls.jsonl`.
+| Environment | Docker + docker compose (`api` and `web` containers) |
+| Backend | Python 3.12, FastAPI, uv |
+| Frontend | Vite + React + TypeScript |
+| Storage | SQLite + SQLModel (planned) |
+| Models (ASR / VLM / LLM) | OpenRouter for VLM / LLM; faster-whisper (local) for ASR. Specific models TBD in M1 |
 
 ### Commands
 
@@ -61,7 +56,7 @@ Each folder has a README with its scope and owner.
 
 ## Rules
 
-1. **Change only your own features.** We split work vertically, so each of us owns features end to end (frontend + backend). Shared files (`backend/api/main.py`, the frontend router, `backend/db/schemas.py`, `docker-compose.yml`) need the other person's review.
+1. **Stay in your folder.** Don't change another area's code; tell its owner instead.
 2. **Shared data shapes follow plan §8.4** (Save / Goal / Profile). If you need to add or change a field, say so in your PR description so other owners can adjust. Never silently rename or drop a field.
 3. **Every agent decision carries a reason** that cites the user's profile or save history (e.g. "Because you said you're visiting Japan in December"). This is the core of the demo.
 4. **Every output item links back to the save it came from.**
@@ -71,6 +66,5 @@ Each folder has a README with its scope and owner.
 ## Workflow
 
 - Branch from `main` as `<area>/<short-description>` (e.g. `save_loop/intent-inference`).
-- Small PRs into `main`. The other person reviews before merging.
-- Every PR explains how it works.
+- Small PRs into `main`.
 - If your area's scope changes, update its README.
