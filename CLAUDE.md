@@ -28,7 +28,18 @@ A personal agent that treats social-media saves as signals of intent. The same s
 
 ### Commands
 
-TBD: fill in once the M0 skeleton is merged (install, run with Docker, format/lint, tests).
+Run from the repo root with Docker Desktop open. Needs a `.env` (copy `.env.example`).
+
+| Command | What it does |
+|---|---|
+| `docker compose up --build` | Build (first time or after dependency changes) and start everything |
+| `docker compose up` | Start everything |
+| `docker compose down` | Stop |
+| `docker compose logs -f api` | Follow backend logs |
+
+- Frontend: http://localhost:5173 (calls the backend through `/api/...`)
+- Backend API docs: http://localhost:8000/docs
+- Tests: TBD
 
 ## Repo map
 
